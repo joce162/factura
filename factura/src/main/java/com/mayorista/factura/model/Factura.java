@@ -1,4 +1,5 @@
 package com.mayorista.factura.model;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -10,31 +11,35 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "facturas")
-@Data // Esto crea Getters y Setters automáticamente
-@NoArgsConstructor // Crea el constructor vacío
-@AllArgsConstructor // Crea el constructor con todos los campos
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Factura {
 
-public class factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_factura;
+    @Column(name = "id_factura")
+    private Long idFactura;
 
     @NotNull(message = "El ID del pedido no puede ser nulo")
-    private Long id_pedido;
+    @Column(name = "id_pedido")
+    private Long idPedido;
 
     @NotNull(message = "El ID del cliente no puede ser nulo")
-    private Long id_cliente;
+    @Column(name = "id_cliente")
+    private Long idCliente;
 
     @Positive(message = "El monto neto debe ser mayor a cero")
-    private Double monto_neto;
+    @Column(name = "monto_neto")
+    private Double montoNeto;
 
     private Double iva;
 
-    private Double monto_final;
+    @Column(name = "monto_final")
+    private Double montoFinal;
 
     @Column(name = "fecha_emision")
     private LocalDateTime fechaEmision = LocalDateTime.now();
 
     private String estado;
-
 }
